@@ -3,6 +3,7 @@ from user import User
 
 user = User()
 
+
 class Account:
     def __init__(self):
         self.account_list = []
@@ -16,6 +17,27 @@ class Account:
         # In the case the username is available
         return False
 
+    # Function to create a new dictionary of a new account
     def add_user(self, username):
         new_user = user.create_new_user(username)
         self.account_list.append(new_user)
+
+    # Function to first check if the username exist in the list
+    def account_exist(self, username):
+        for users in self.account_list:
+            if users['username'] == username:
+                return True
+        return False
+
+    # Function to return the dictionary of the current account
+    def return_user(self, username):
+        for account in self.account_list:
+            if account['username'] == username:
+                return account
+
+    def login(self, user):
+        password = ""
+        while (password != user['password']):
+            password = input("Please enter your password: ")
+
+        return True
