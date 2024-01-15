@@ -35,9 +35,24 @@ class Account:
             if account['username'] == username:
                 return account
 
+    # Function to keep asking for user's password until it is correct
     def login(self, user):
         password = ""
         while (password != user['password']):
             password = input("Please enter your password: ")
 
         return True
+
+    # Function to deposit money into the account
+    def deposit(self, user, amount):
+        user['balance'] += amount
+
+    def withdraw(self, user, amount):
+        if user['balance'] >= amount:
+            user['balance'] -= amount
+        else:
+            print("Sorry, not enough money to withdraw\n")
+
+    def view_balance(self, user):
+        print("${:.2f}".format(user['balance']))
+        print("\n")

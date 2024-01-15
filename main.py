@@ -15,11 +15,24 @@ def logged_in(current_account):
     user_logged_in = True
 
     while user_logged_in:
-        bank_menu.print_menu_user()
+        bank_menu.print_menu_user(current_account)
         user_choice = input("Please make your selection: ")
-        if user_choice == '5':
+        if user_choice == '6':
             print("\n")
             user_logged_in = False
+        elif user_choice == '5':
+            print(current_account)
+        elif user_choice == '2':
+            amount = float(input("Please enter the amount you want to deposit: "))
+            accounts.deposit(current_account, amount)
+        elif user_choice == '3':
+            amount = float(input("Please enter the amount you want to withdraw:  "))
+            accounts.withdraw(current_account, amount)
+        elif user_choice == '1':
+            accounts.view_balance(current_account)
+        else:
+            print("Invalid choice. ")
+            print("\n")
 
 
 while is_on:

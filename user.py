@@ -21,7 +21,8 @@ class User:
             "password": password,
             "first": first,
             "last": last,
-            "email": email
+            "email": email,
+            "balance": 0
         }
 
         return new_user

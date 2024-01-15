@@ -11,10 +11,12 @@ class BankMenu:
         print("2. Sign Up")
         print("3. Exit")
 
-    def print_menu_user(self):
+    def print_menu_user(self, user):
+        print(f"Welcome {user['username']}")
         print("What would you like to do today?")
         print("1. Check Balance")
         print("2. Deposit")
         print("3. Withdraw")
         print("4. Change Information")
-        print("5. Sign Out")
+        print("5. View Information")
+        print("6. Sign Out")
