@@ -56,3 +56,6 @@ class Account:
     def view_balance(self, user):
         print("${:.2f}".format(user['balance']))
         print("\n")
+
+    def update(self, user, key, new_info):
+        user[key] = new_info

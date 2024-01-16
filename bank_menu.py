@@ -20,3 +20,12 @@ class BankMenu:
         print("4. Change Information")
         print("5. View Information")
         print("6. Sign Out")
+
+    def print_user_change(self):
+        print("\n")
+        print("What information would you like to change?")
+        print("1. Password")
+        print("2. First Name")
+        print("3. Last Name")
+        print("4. Email")
+        print("5. Back")

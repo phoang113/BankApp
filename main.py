@@ -30,9 +30,33 @@ def logged_in(current_account):
             accounts.withdraw(current_account, amount)
         elif user_choice == '1':
             accounts.view_balance(current_account)
+        elif user_choice == '4':
+            bank_menu.print_user_change()
+            change_info(current_account)
         else:
             print("Invalid choice. ")
             print("\n")
+
+def change_info(account):
+    choice = input("Please make a selection: ")
+    key = ""
+    new = ""
+    if choice == '1':
+        new = input("What is the new password?: ")
+        key = "password"
+    elif choice == '2':
+        new = input("What is the new first name?: ")
+        key = 'first'
+    elif choice == '3':
+        new = input("What is the new last name?: ")
+        key = 'last'
+    elif choice == '4':
+        new = input("What is the new email?: ")
+        key = 'email'
+    else:
+        print("Invalid input.\n")
+    if key != "":
+        accounts.update(account, key, new)
 
 
 while is_on:
