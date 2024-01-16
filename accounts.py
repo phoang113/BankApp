@@ -1,5 +1,6 @@
 # Class accounts that will eventually read in a file to access prior accounts
 from user import User
+import json
 
 user = User()
 
@@ -7,6 +8,11 @@ user = User()
 class Account:
     def __init__(self):
         self.account_list = []
+
+        # Reads in file to get account information
+        f = open("account_file.json", "r")
+        self.account_list = json.loads(f.read())
+        f.close()
 
     # Function that checks if username already exists
     def check_user(self, username):
@@ -46,16 +52,26 @@ class Account:
     # Function to deposit money into the account
     def deposit(self, user, amount):
         user['balance'] += amount
-
+    # Function to withdraw money from the account, assuming they have enough
     def withdraw(self, user, amount):
         if user['balance'] >= amount:
             user['balance'] -= amount
         else:
             print("Sorry, not enough money to withdraw\n")
 
+    # Function to view the user's current balance
     def view_balance(self, user):
         print("${:.2f}".format(user['balance']))
         print("\n")
 
+    # Function to update the user information
     def update(self, user, key, new_info):
         user[key] = new_info
+
+    # Function to save all the accounts created in the session for the future
+    def save(self):
+        output_file = open("account_file.json", "w")
+
+        json.dump(self.account_list, output_file)
+
+        output_file.close()

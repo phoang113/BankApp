@@ -19,6 +19,7 @@ def logged_in(current_account):
         user_choice = input("Please make your selection: ")
         if user_choice == '6':
             print("\n")
+            accounts.save()
             user_logged_in = False
         elif user_choice == '5':
             print(current_account)
