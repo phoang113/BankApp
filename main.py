@@ -1,14 +1,19 @@
 from bank_menu import BankMenu
 from accounts import Account
 from user import User
+from GUI import GUI
+from tkinter import *
+
 
 # Initialize class
 bank_menu = BankMenu()
 user = User()
 accounts = Account()
+gui = GUI()
 
 # Turn on the machine
 is_on = True
+
 
 # While the machine is on
 def logged_in(current_account):
@@ -38,6 +43,7 @@ def logged_in(current_account):
             print("Invalid choice. ")
             print("\n")
 
+
 def change_info(account):
     choice = input("Please make a selection: ")
     key = ""
@@ -64,6 +70,7 @@ while is_on:
     # Prints the starting menu
     bank_menu.print_menu_start()
 
+
     # Ask user to pick a choice
     choice = input("Please provide your selection: ")
 
@@ -88,5 +95,12 @@ while is_on:
                 logged_in(current_account)
         else:
             print("Username does not exist!\n")
+    elif choice == '0':
+        accounts.print_usernames()
+    elif choice == '11':
+        gui.open_gui()
     else:
         print("Invalid choice.\n")
+
+
+

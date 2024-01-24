@@ -52,6 +52,7 @@ class Account:
     # Function to deposit money into the account
     def deposit(self, user, amount):
         user['balance'] += amount
+
     # Function to withdraw money from the account, assuming they have enough
     def withdraw(self, user, amount):
         if user['balance'] >= amount:
@@ -75,3 +76,8 @@ class Account:
         json.dump(self.account_list, output_file)
 
         output_file.close()
+
+    # For testers, just to print current usernames saved
+    def print_usernames(self):
+        for username in self.account_list:
+            print(username['username'])
