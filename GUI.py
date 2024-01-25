@@ -1,5 +1,6 @@
 from tkinter import *
-
+from accounts import Account
+from tkinter import messagebox
 
 # GUI class
 class GUI:
@@ -33,6 +34,12 @@ class GUI:
         self.username_entry = Entry(width=25)
         self.password_entry = Entry(width=25)
 
+
+
+        # Accounts class
+        self.account = Account()
+
+
     def open_gui(self):
         self.window.mainloop()
 
@@ -57,17 +64,46 @@ class GUI:
         self.username_entry.grid(row=1, column=1)
         self.password_entry.grid(row=2, column=1)
 
-        self.login_button = Button(text="Login", command=lambda:[self.save_info(), self.extra_func()])
+        self.login_button = Button(text="Login", command=lambda:[self.save_info(), self.check_info()])
         self.login_button.grid(row=3, column=1)
 
 
     def save_info(self):
 
         self.username = self.username_entry.get()
-        print(self.username)
-
-
-    def extra_func(self):
         self.password = self.password_entry.get()
-        print(self.password)
+
+
+    def check_info(self):
+        if self.account.check_user(self.username):
+            self.current_account = self.account.return_user(self.username)
+
+        else:
+            messagebox.showerror(title="Error", message="Account does not exist!")
+
+        if self.account.updated_login(self.current_account, self.password):
+            self.user_main()
+        else:
+            messagebox.showerror(title="Error", message="Account/Password combination incorrect!")
+
+
+
+    def user_main(self):
+        self.clear()
+        self.current_account = self.account.return_user(self.username)
+        self.username_text = self.account.return_username(self.current_account)
+        self.user_label = Label(text=self.username_text)
+
+        self.user_balance_text = self.account.return_balace(self.current_account)
+        self.user_balance_label = Label(text=self.user_balance_text)
+
+        self.user_label.grid(row=1, column=1)
+        self.user_balance_label.grid(row=1, column=2)
+
+        self.withdraw_button = Button(text="Withdraw")
+        self.deposit_button = Button(text="Deposit")
+        self.deposit_button.grid(row=2, column=1)
+        self.withdraw_button.grid(row=2, column=2)
+
+
 

@@ -99,6 +99,9 @@ while is_on:
         accounts.print_usernames()
     elif choice == '11':
         gui.open_gui()
+    elif choice =='22':
+        print(gui.username)
+        print(gui.password)
     else:
         print("Invalid choice.\n")
 

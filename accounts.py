@@ -81,3 +81,17 @@ class Account:
     def print_usernames(self):
         for username in self.account_list:
             print(username['username'])
+
+
+    def updated_login(self, user, password):
+        if user['password'] == password:
+            return True
+        else:
+            return False
+
+
+    def return_username(self, user):
+        return user['username']
+
+    def return_balace(self, user):
+        return user['balance']
