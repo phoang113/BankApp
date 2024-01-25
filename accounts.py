@@ -1,4 +1,5 @@
 # Class accounts that will eventually read in a file to access prior accounts
+from tkinter import messagebox
 from user import User
 import json
 
@@ -52,13 +53,15 @@ class Account:
     # Function to deposit money into the account
     def deposit(self, user, amount):
         user['balance'] += amount
+        self.save()
 
     # Function to withdraw money from the account, assuming they have enough
     def withdraw(self, user, amount):
         if user['balance'] >= amount:
             user['balance'] -= amount
+            self.save()
         else:
-            print("Sorry, not enough money to withdraw\n")
+            messagebox.showerror(title="Error", message="Insufficient Funds!")
 
     # Function to view the user's current balance
     def view_balance(self, user):

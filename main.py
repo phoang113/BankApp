@@ -76,6 +76,7 @@ while is_on:
 
     # If user wants to turn off the app
     if choice == '3':
+        accounts.save()
         is_on = False
     # If user wants to sign up for a new account
     elif choice == '2':

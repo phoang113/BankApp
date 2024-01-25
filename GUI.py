@@ -100,10 +100,49 @@ class GUI:
         self.user_label.grid(row=1, column=1)
         self.user_balance_label.grid(row=1, column=2)
 
-        self.withdraw_button = Button(text="Withdraw")
-        self.deposit_button = Button(text="Deposit")
+        self.withdraw_button = Button(text="Withdraw", command=self.withdraw_page)
+        self.deposit_button = Button(text="Deposit", command=self.deposit_page)
         self.deposit_button.grid(row=2, column=1)
         self.withdraw_button.grid(row=2, column=2)
+
+    def deposit_page(self):
+        self.clear()
+        self.current_account = self.account.return_user(self.username)
+        self.amount_label = Label(text="Amount")
+        self.amount_entry = Entry(width=25)
+        self.deposit_button = Button(text="Deposit", command=lambda:[self.deposit(),self.save(), self.user_main()])
+
+        self.amount_label.grid(row=1, column=1)
+        self.amount_entry.grid(row=1, column=2)
+        self.deposit_button.grid(row=2, column=2,)
+
+
+
+    def deposit(self):
+        self.current_account = self.account.return_user(self.username)
+        self.amount = int(self.amount_entry.get())
+        self.account.deposit(self.current_account, self.amount)
+
+    def withdraw_page(self):
+        self.clear()
+        self.current_account = self.account.return_user(self.username)
+        self.amount_label = Label(text="Amount")
+        self.amount_entry = Entry(width=25)
+        self.withdraw_button = Button(text="Withdraw", command=lambda: [self.withdraw(),self.save(), self.user_main()])
+
+        self.amount_label.grid(row=1, column=1)
+        self.amount_entry.grid(row=1, column=2)
+        self.withdraw_button.grid(row=2, column=2, )
+
+    def withdraw(self):
+        self.current_account = self.account.return_user(self.username)
+        self.amount = int(self.amount_entry.get())
+        self.account.withdraw(self.current_account, self.amount)
+
+    def save(self):
+        self.account.save()
+
+
 
 
 
